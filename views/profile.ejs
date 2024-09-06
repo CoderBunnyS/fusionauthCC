@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .profile-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 40px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        .profile-info, .profile-form {
+            width: 45%;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-info h1, .profile-info p {
+            margin-bottom: 15px;
+        }
+
+        .profile-form label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: block;
+            color: #333;
+        }
+
+        .profile-form input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .profile-form button {
+            background-color: #6222CC;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .profile-form button:hover {
+            background-color: #45199A;
+        }
+
+        .profile-section h2 {
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navbar Section -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1 id='logo'>EventPortal</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="#login" class="login-btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Profile Section -->
+    <section id="profile" class="profile-section">
+        <div class="profile-container">
+            <!-- Current Info Section -->
+            <div class="profile-info">
+                <h1>Welcome, <%= user.name %>!</h1>
+                <p><strong>Current Email:</strong> <%= user.email %></p>
+                <p><strong>Where do you live:</strong> <%= user.data.userLocation %></p>
+                <p><strong>Favorite kind of event:</strong> <%= user.data.preferredEvent %></p>
+            </div>
+
+            <!-- Form Section -->
+            <div class="profile-form">
+                <h2>Update Your Account Settings</h2>
+                <form action="/update-profile" method="post">
+                    <label for="nickname">Nickname:</label>
+                    <input type="text" name="nickname" value="<%= user.data.nickname %>">
+
+                    <label for="userLocation">Change your location:</label>
+                    <input type="text" name="location" value="<%= user.data.userLocation %>">
+
+                    <label for="eventType">Preferred event type:</label>
+                    <input type="text" name="eventType" value="<%= user.data.preferredEvent %>">
+
+                    <button type="submit" class="btn-primary">Update Profile</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 EventPortal. All rights reserved.</p>
+    </footer>
+</body>
+</html>
